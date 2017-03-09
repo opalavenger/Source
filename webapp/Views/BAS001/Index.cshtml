@@ -1,0 +1,76 @@
+﻿
+渠道編碼:<input type="text" class="w250" ng-model="condition.SYS_NO" maxlength="20"><br />
+水門編號:<input type="text" class="w250" ng-model="condition.DOOR" maxlength="20"><br />
+<br />
+@*<input type="button" style="width:130px;" ng-click="Insert()" value="新增">*@
+<input type="button" style="width:130px;" ng-click="Query()" value="查詢">
+
+
+<table style="width: 100%;" border="0" class="tab_style_default">
+    <tr>
+      
+        <th>
+            渠道編碼
+        </th>
+        <th>
+            水門編號
+        </th>
+    </tr>
+    <tr ng-repeat="item in Querydata">
+       
+        <td>
+            <span ng-bind="item.SYS_NO"></span>
+        </td>
+        <td>
+            {{item.Id}}-{{item.DOOR}}
+        </td>
+       
+    </tr>
+</table>
+
+<script>
+    var appIRF = angular.module("app", []);
+    appIRF.controller("irfController", ['$scope', '$http','$q', function ($scope, $http,$q) {
+        
+        $scope.Querydata = [];
+        $scope.condition = { };
+        $scope.modelNew = {};
+
+        //$scope.Query = function () {
+        //    $http.post("/api/BAS001/POSTBAS001Query").success(function (data) {
+        //        if (data.iserror) {
+        //            alert(data.message);
+        //        }
+        //        else {
+        //            $scope.Querydata = data.data;
+        //            //alert(data.message);
+        //        }
+        //    }).error(function (data, status) {
+        //        alert(data + status);
+        //    });
+        //}
+        $scope.Query = function () {
+            $http.post("/api/BAS001/POSTBAS001Query")
+    .then(function (response) {
+        if (response.data.iserror) {
+            alert(response.data.message);
+                    }
+                    else {
+            $scope.Querydata = response.data.data;
+                        //alert(data.message);
+                    }
+    })
+    .catch(function (response) {
+        console.error('Gists error', response.status, response.data);
+    })
+    .finally(function () {
+        alert(data + status);
+    });
+
+        }
+        
+
+    }]);
+
+</script>
+
