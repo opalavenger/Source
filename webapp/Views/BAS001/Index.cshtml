@@ -1,36 +1,111 @@
 ﻿
-渠道編碼:<input type="text" class="w250" ng-model="condition.SYS_NO" maxlength="20"><br />
-水門編號:<input type="text" class="w250" ng-model="condition.DOOR" maxlength="20"><br />
-<br />
-@*<input type="button" style="width:130px;" ng-click="Insert()" value="新增">*@
-<input type="button" style="width:130px;" ng-click="Query()" value="查詢">
 
+			<!-- MAIN CONTENT -->
+<div id="content">
 
-<table style="width: 100%;" border="0" class="tab_style_default">
-    <tr>
-      
-        <th>
-            渠道編碼
-        </th>
-        <th>
-            水門編號
-        </th>
-    </tr>
-    <tr ng-repeat="item in Querydata">
-       
-        <td>
-            <span ng-bind="item.SYS_NO"></span>
-        </td>
-        <td>
-            {{item.Id}}-{{item.DOOR}}
-        </td>
-       
-    </tr>
-</table>
+        <header>
+        <span class="widget-icon"> <i class="fa fa-align-justify"></i> </span>
+        <h2>查詢條件</h2>
+
+    </header>
+    <div>
+        渠道編碼:<input type="text" class="w250" ng-model="condition.SYS_NO" maxlength="20"><br />
+        水門編號:<input type="text" class="w250" ng-model="condition.DOOR" maxlength="20"><br />
+    </div>
+    <input type="button" style="width:130px;" ng-click="Query()" value="查詢">
+    <input type="button" style="width:130px;" ng-click="Add()" value="新增">
+    <!-- widget grid -->
+    <section id="widget-grid" class="">
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+
+                    -->
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>Standard Data Tables </h2>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+
+                            <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th ><input type="button"  ng-click="DeleteCheck(Querydata)" value="刪除勾選"></th>
+                                        <th data-hide="phone">渠道編碼</th>
+                                        <th data-class="expand">水門編號</th>
+                                        <th data-hide="phone"> 修改</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in Querydata">
+                                        <td><input type="button"  ng-click="Delete(item)" value="刪除">
+                                        <input type="checkbox" ng-model="item.isDelete" value="刪除" />
+                                        </td>
+                                        <td><span ng-bind="item.SYS_NO"></span></td>
+                                        <td>{{item.Id}}-{{item.DOOR}}</td>
+                                        <td><input type="button"  ng-click="Update(item)" value="修改"></td>
+                                       
+                                    </tr>
+                                   
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>              
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+        <!-- end row -->
+        <!-- end row -->
+
+    </section>
+    <!-- end widget grid -->
+
+</div>
+
 
 <script>
-    var appIRF = angular.module("app", []);
-    appIRF.controller("irfController", ['$scope', '$http','$q', function ($scope, $http,$q) {
+    var appIRF = angular.module("app", ['ngDialog']);
+    appIRF.controller("irfController", ['$scope', '$http','$q','ngDialog', function ($scope, $http,$q,ngDialog) {
         
         $scope.Querydata = [];
         $scope.condition = { };
@@ -50,26 +125,98 @@
         //    });
         //}
         $scope.Query = function () {
-            $http.post("/api/BAS001/POSTBAS001Query")
-    .then(function (response) {
-        if (response.data.iserror) {
-            alert(response.data.message);
-                    }
-                    else {
-            $scope.Querydata = response.data.data;
-                        //alert(data.message);
-                    }
-    })
-    .catch(function (response) {
-        console.error('Gists error', response.status, response.data);
-    })
-    .finally(function () {
-        alert(data + status);
-    });
+            $http.post("/api/BAS001/POSTBAS001Query", { condition: $scope.condition })
+            .then(function (response) {
+                if (response.data.iserror) {
+                    alert(response.data.message);
+                }
+                else {
+                    $scope.Querydata = response.data.data;
+                    //alert(data.message);
+                }
+            })
+            .catch(function (response) {
+                console.error('Gists error', response.status, response.data);
+            })
+            .finally(function () {
+                alert(data + status);
+            });
 
         }
-        
+        $scope.Delete = function (item) {
+            if (confirm("是否刪除" + item.SYS_NO + "?")) {
+                $http.post("/api/BAS001/POSTBAS001Delete", { key: item.Id })
+                .then(function (response) {
+                    if (response.data.iserror) {
+                        alert(response.data.message);
+                    }
+                    else {
+                        alert(response.data.message);
+                        $scope.Query();
+                    }
+                })
+                .catch(function (response) {
+                    console.error('Gists error', response.status, response.data);
+                })
+                .finally(function () {
+                    alert(data + status);
+                });
+            }
+        }
+        $scope.DeleteCheck = function (datas) {
+            if (confirm("是否刪除勾選?"))
+            {
+                $http.post("/api/BAS001/POSTBAS001DeleteCheck", { data: datas })
+                .then(function (response) {
+                    if (response.data.iserror) {
+                        alert(response.data.message);
+                    }
+                    else {
+                        alert(response.data.message);
+                        $scope.Query();
+                    }
+                })
+                .catch(function (response) {
+                    console.error('Gists error', response.status, response.data);
+                })
+                .finally(function () {
+                    alert(data + status);
+                });
+            }
+        }
 
+        $scope.Add = function () {
+            $scope.modelModiy = { Id:0, SYS_NO:'123'};
+            ngDialog.openConfirm({
+                template: '../Html1.html',
+                className: 'ngdialog-theme-default width850',
+                scope: $scope,
+                cache: false,
+                closeByEscape: false
+            });
+        }
+
+        $scope.Update = function (item) {
+            $scope.modelModiy = item;
+            ngDialog.openConfirm({
+                template: '../Html1.html',
+                className: 'ngdialog-theme-default width850',
+                scope: $scope,
+                cache: false,
+                closeByEscape: false
+            });
+        }
+
+        $scope.Save = function (item) {
+            if(!item.DOOR)
+            {
+                alert("請輸入Door");
+                return;
+            }
+
+            //Do Call API Save
+        }
+       
     }]);
 
 </script>
