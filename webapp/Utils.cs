@@ -26,6 +26,7 @@ namespace YMIR.App_Code
         public static void InsertActionLog(int programId,int actionType,string comment,string key)
         {
             string ddd = "fff";
+            string fff = "hhh";
             string sql = @"INSERT INTO ActionLog
                                            ([ActionLog_Action],[ActionLog_Id],[ActionLog_UserNO],
                                            [ActionLog_Source],[ActionLog_Type],[ActionLog_Comment],[ActionLog_CreateTime]
