@@ -25,7 +25,7 @@ namespace YMIR.App_Code
         /// <param name="key">ID編號(團購ID、活動ID、訊息ID等，若無ID則填入0，如登入)</param>
         public static void InsertActionLog(int programId,int actionType,string comment,string key)
         {
-            string ddd = "fff1";
+            string ddd = "njhki";
             string fff = "hhh";
             string bbb = "aaa"; 
             string sql = @"INSERT INTO ActionLog
