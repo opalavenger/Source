@@ -11,25 +11,37 @@ namespace SSoft.MVC.Interfaces
        
         public System.Type InputModelObjectType { get; set; }
         public System.Type QueryOutputModelObjectType { get; set; }
-
         public System.Type ConditionModelObjectType { get; set; }
         public List<SSoft.MVC.Interfaces.DataObjectInfo> DataObjectInfoes { get; set; }
+        public string ColumnPrefix  { get; set; }
 
-        public List<string> VisualKeys { get; set; }
+        public string KeyName { get; set; }
+
+        public string NoColumnName { get; set; }
         public List<string> IncludeTables { get; set; }
 
         public List<string> DeliveryColumns { get; set; }
-        public List<string> DeliveryColumnsDetail1 { get; set; }
-        public List<string> DeliveryColumnsDetail2 { get; set; }
-        public List<string> DeliveryColumnsDetail3 { get; set; }
         public DataObjectInfo()
         {
             DataObjectInfoes = new List<DataObjectInfo>();
             IncludeTables = new List<string>();
-            DeliveryColumns = new List<string>();
-            DeliveryColumnsDetail1 = new List<string>();
-            DeliveryColumnsDetail2 = new List<string>();
-            DeliveryColumnsDetail3 = new List<string>();
+        }
+
+        public DataObjectInfo(System.Type inputModelObjectType,string columnPrefix,string keyName)
+            : this()
+        {
+            this.InputModelObjectType = inputModelObjectType;
+            this.ColumnPrefix = columnPrefix;
+            this.KeyName = keyName;
+        }
+
+        public DataObjectInfo(System.Type inputModelObjectType, System.Type conditionModelObjectType, string columnPrefix, string keyName)
+            : this()
+        {
+            this.InputModelObjectType = inputModelObjectType;
+            this.ConditionModelObjectType = conditionModelObjectType;
+            this.ColumnPrefix = columnPrefix;
+            this.KeyName = keyName;
         }
         public DataObjectInfo(System.Type inputModelObjectType, System.Type conditionModelObjectType)
             : this()

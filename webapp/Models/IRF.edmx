@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IRFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BASCodeTableDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="LngNo" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="TypeNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="KeyNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Descr" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Descr2" Type="nvarchar" MaxLength="400" />
+          <Property Name="Attribute01" Type="nvarchar" MaxLength="400" />
+          <Property Name="Attribute02" Type="nvarchar" MaxLength="400" />
+          <Property Name="Attribute03" Type="nvarchar" MaxLength="400" />
+          <Property Name="Attribute04" Type="nvarchar" MaxLength="400" />
+          <Property Name="Attribute05" Type="nvarchar" MaxLength="400" />
+          <Property Name="Attribute06" Type="nvarchar" MaxLength="400" />
+          <Property Name="AttributeDesp" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsEnabled" Type="bit" />
+          <Property Name="OrderSR" Type="int" Nullable="false" />
+          <Property Name="AddUserNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="ModifyUserNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="ModifyUserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="BASCodeTableMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeNo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TypeDescr" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="KeyNoLength" Type="int" Nullable="false" />
+          <Property Name="IsSyncViaSap" Type="bit" Nullable="false" />
+          <Property Name="AddUserNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddUserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="ModifyUserNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="ModifyUserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="IRF030">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SYS_NO" Type="varchar" MaxLength="10" />
+          <Property Name="DOOR" Type="varchar" MaxLength="8" />
+          <Property Name="DOOR_POINT" Type="decimal" Precision="8" Scale="4" />
+          <Property Name="W_STN" Type="varchar" MaxLength="10" />
+          <Property Name="PLAN_W" Type="decimal" Precision="7" Scale="4" />
+          <Property Name="IR_ROUND" Type="decimal" Precision="2" Scale="0" />
+          <Property Name="SYS45_LOSS" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="IR_W1_1" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="IR_W1_2" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="IR_W2" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="IR_W3" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="DRY" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="RAIN_1" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_2" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_3" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_4" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_5" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_6" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_7" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_8" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_9" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_10" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_11" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_12" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="SOIL" Type="char" MaxLength="1" />
+          <Property Name="POINT_LOSS" Type="decimal" Precision="7" Scale="4" />
+          <Property Name="DRY1" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="create_user_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="create_datetime" Type="datetime" />
+          <Property Name="modify_user_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="modify_datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ODF100">
+          <Key>
+            <PropertyRef Name="code" />
+            <PropertyRef Name="unit" />
+          </Key>
+          <Property Name="code" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="addr" Type="varchar" MaxLength="50" />
+          <Property Name="tel" Type="varchar" MaxLength="15" />
+          <Property Name="newunit" Type="varchar" MaxLength="40" />
+          <Property Name="newname" Type="varchar" MaxLength="50" />
+          <Property Name="comment" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserInfo_NO" />
+          </Key>
+          <Property Name="UserInfo_NO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserInfo_Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_Rcd" Type="int" Nullable="false" />
+          <Property Name="UserInfo_AD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_PWD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserInfo_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_AppType" Type="int" Nullable="false" />
+          <Property Name="UserInfo_WebType" Type="int" Nullable="false" />
+          <Property Name="UserInfo_NationalId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_TwTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_IsSignException" Type="bit" Nullable="false" />
+          <Property Name="UserInfo_IsGiftException" Type="bit" Nullable="false" />
+          <Property Name="UserInfo_IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="UserInfo_APPUIId" Type="int" Nullable="false" />
+          <Property Name="UserInfo_WebUIId" Type="int" Nullable="false" />
+          <Property Name="UserInfo_ModifyTime" Type="datetime" Nullable="false" />
+          <Property Name="UserInfo_CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebSite">
+          <Key>
+            <PropertyRef Name="WebSite_NO" />
+          </Key>
+          <Property Name="WebSite_NO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WebSite_WebNO" Type="int" Nullable="false" />
+          <Property Name="WebSite_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WebSite_Path" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="WebSite_IsEnable" Type="bit" Nullable="false" />
+          <Property Name="WebSite_ModifyUser" Type="int" Nullable="false" />
+          <Property Name="WebSite_CreateUser" Type="int" Nullable="false" />
+          <Property Name="WebSite_ModifyTime" Type="datetime" Nullable="false" />
+          <Property Name="WebSite_CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebSiteType">
+          <Key>
+            <PropertyRef Name="WebType_No" />
+          </Key>
+          <Property Name="WebType_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WebType_Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="WebType_IsEnable" Type="bit" Nullable="false" />
+          <Property Name="WebType_Priority" Type="int" Nullable="false" />
+          <Property Name="WebType_ModifyUser" Type="int" Nullable="false" />
+          <Property Name="WebType_CreateUser" Type="int" Nullable="false" />
+          <Property Name="WebType_ModifyTime" Type="datetime" Nullable="false" />
+          <Property Name="WebType_CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebUserInfo">
+          <Key>
+            <PropertyRef Name="WebUI_Id" />
+          </Key>
+          <Property Name="WebUI_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WebUI_Token" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WebUI_TokenTime" Type="datetime" Nullable="false" />
+          <Property Name="WebUI_ISEnabled" Type="bit" Nullable="false" />
+          <Property Name="WebUI_LastLTime" Type="datetime" Nullable="false" />
+          <Property Name="WebUI_LTime" Type="datetime" Nullable="false" />
+          <Property Name="WebUI_ModifyTime" Type="datetime" Nullable="false" />
+          <Property Name="WebUI_CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebUserPage">
+          <Key>
+            <PropertyRef Name="WUPage_Id" />
+          </Key>
+          <Property Name="WUPage_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WUPage_TabId" Type="int" Nullable="false" />
+          <Property Name="WUPage_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WUPage_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WUPage_No" Type="nvarchar" MaxLength="50" />
+          <Property Name="WUPage_Path" Type="nvarchar" MaxLength="100" />
+          <Property Name="WUPage_Order" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WebUserPermission">
+          <Key>
+            <PropertyRef Name="WUPermission_Id" />
+          </Key>
+          <Property Name="WUPermission_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WUPermission_WUType_Id" Type="int" Nullable="false" />
+          <Property Name="WUPermission_WUTab_Id" Type="int" Nullable="false" />
+          <Property Name="WUPermission_WUPage_Id" Type="int" Nullable="false" />
+          <Property Name="WUPermission_IsEnabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebUserTab">
+          <Key>
+            <PropertyRef Name="WUTab_Id" />
+          </Key>
+          <Property Name="WUTab_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WUTab_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WebUserType">
+          <Key>
+            <PropertyRef Name="WUType_Id" />
+          </Key>
+          <Property Name="WUType_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WUType_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="WUType_IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="WUType_ModifyUser" Type="int" Nullable="false" />
+          <Property Name="WUType_CreateUser" Type="int" Nullable="false" />
+          <Property Name="WUType_ModifyTime" Type="datetime" Nullable="false" />
+          <Property Name="WUType_CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BASCodeTableDeatil_BASCodeTableMaster">
+          <End Role="BASCodeTableMaster" Type="Self.BASCodeTableMaster" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BASCodeTableDetail" Type="Self.BASCodeTableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BASCodeTableMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BASCodeTableDetail">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_WebUserInfo">
+          <End Role="WebUserInfo" Type="Self.WebUserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserInfo">
+              <PropertyRef Name="WebUI_Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserInfo_WebUIId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_WebUserType">
+          <End Role="WebUserType" Type="Self.WebUserType" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserType">
+              <PropertyRef Name="WUType_Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserInfo_WebType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebSite_WebSiteType">
+          <End Role="WebSiteType" Type="Self.WebSiteType" Multiplicity="1" />
+          <End Role="WebSite" Type="Self.WebSite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebSiteType">
+              <PropertyRef Name="WebType_No" />
+            </Principal>
+            <Dependent Role="WebSite">
+              <PropertyRef Name="WebSite_WebNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserPage_WebUserTab">
+          <End Role="WebUserTab" Type="Self.WebUserTab" Multiplicity="1" />
+          <End Role="WebUserPage" Type="Self.WebUserPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserTab">
+              <PropertyRef Name="WUTab_Id" />
+            </Principal>
+            <Dependent Role="WebUserPage">
+              <PropertyRef Name="WUPage_TabId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserPermission_WebUserType">
+          <End Role="WebUserType" Type="Self.WebUserType" Multiplicity="1" />
+          <End Role="WebUserPermission" Type="Self.WebUserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserType">
+              <PropertyRef Name="WUType_Id" />
+            </Principal>
+            <Dependent Role="WebUserPermission">
+              <PropertyRef Name="WUPermission_WUType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserType_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="WebUserType" Type="Self.WebUserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_NO" />
+            </Principal>
+            <Dependent Role="WebUserType">
+              <PropertyRef Name="WUType_CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserType_UserInfo1">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="WebUserType" Type="Self.WebUserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_NO" />
+            </Principal>
+            <Dependent Role="WebUserType">
+              <PropertyRef Name="WUType_ModifyUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IRFModelStoreContainer">
+          <EntitySet Name="BASCodeTableDetail" EntityType="Self.BASCodeTableDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BASCodeTableMaster" EntityType="Self.BASCodeTableMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IRF030" EntityType="Self.IRF030" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ODF100" EntityType="Self.ODF100" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebSite" EntityType="Self.WebSite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebSiteType" EntityType="Self.WebSiteType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUserInfo" EntityType="Self.WebUserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUserPage" EntityType="Self.WebUserPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUserPermission" EntityType="Self.WebUserPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUserTab" EntityType="Self.WebUserTab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUserType" EntityType="Self.WebUserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BASCodeTableDeatil_BASCodeTableMaster" Association="Self.FK_BASCodeTableDeatil_BASCodeTableMaster">
+            <End Role="BASCodeTableMaster" EntitySet="BASCodeTableMaster" />
+            <End Role="BASCodeTableDetail" EntitySet="BASCodeTableDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_WebUserInfo" Association="Self.FK_UserInfo_WebUserInfo">
+            <End Role="WebUserInfo" EntitySet="WebUserInfo" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_WebUserType" Association="Self.FK_UserInfo_WebUserType">
+            <End Role="WebUserType" EntitySet="WebUserType" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebSite_WebSiteType" Association="Self.FK_WebSite_WebSiteType">
+            <End Role="WebSiteType" EntitySet="WebSiteType" />
+            <End Role="WebSite" EntitySet="WebSite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserPage_WebUserTab" Association="Self.FK_WebUserPage_WebUserTab">
+            <End Role="WebUserTab" EntitySet="WebUserTab" />
+            <End Role="WebUserPage" EntitySet="WebUserPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserPermission_WebUserType" Association="Self.FK_WebUserPermission_WebUserType">
+            <End Role="WebUserType" EntitySet="WebUserType" />
+            <End Role="WebUserPermission" EntitySet="WebUserPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserType_UserInfo" Association="Self.FK_WebUserType_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="WebUserType" EntitySet="WebUserType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserType_UserInfo1" Association="Self.FK_WebUserType_UserInfo1">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="WebUserType" EntitySet="WebUserType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IRFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BASCodeTableDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="LngNo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="KeyNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descr" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descr2" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute01" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute02" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute03" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute04" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute05" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute06" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="AttributeDesp" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsEnabled" Type="Boolean" />
+          <Property Name="OrderSR" Type="Int32" Nullable="false" />
+          <Property Name="AddUserNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AddUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUserNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="IPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BASCodeTableMaster" Relationship="Self.FK_BASCodeTableDeatil_BASCodeTableMaster" FromRole="BASCodeTableDetail" ToRole="BASCodeTableMaster" />
+        </EntityType>
+        <EntityType Name="BASCodeTableMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeDescr" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KeyNoLength" Type="Int32" Nullable="false" />
+          <Property Name="IsSyncViaSap" Type="Boolean" Nullable="false" />
+          <Property Name="AddUserNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AddUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUserNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="IPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BASCodeTableDetail" Relationship="Self.FK_BASCodeTableDeatil_BASCodeTableMaster" FromRole="BASCodeTableMaster" ToRole="BASCodeTableDetail" />
+        </EntityType>
+        <EntityType Name="IRF030">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SYS_NO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DOOR" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DOOR_POINT" Type="Decimal" Precision="8" Scale="4" />
+          <Property Name="W_STN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PLAN_W" Type="Decimal" Precision="7" Scale="4" />
+          <Property Name="IR_ROUND" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="SYS45_LOSS" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="IR_W1_1" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="IR_W1_2" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="IR_W2" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="IR_W3" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="DRY" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="RAIN_1" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_2" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_3" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_4" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_5" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_6" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_7" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_8" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_9" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_10" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_11" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="RAIN_12" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="SOIL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="POINT_LOSS" Type="Decimal" Precision="7" Scale="4" />
+          <Property Name="DRY1" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="create_user_id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="create_datetime" Type="DateTime" Precision="3" />
+          <Property Name="modify_user_id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="modify_datetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ODF100">
+          <Key>
+            <PropertyRef Name="code" />
+            <PropertyRef Name="unit" />
+          </Key>
+          <Property Name="code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tel" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="newunit" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="newname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_BASCodeTableDeatil_BASCodeTableMaster">
+          <End Role="BASCodeTableMaster" Type="Self.BASCodeTableMaster" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BASCodeTableDetail" Type="Self.BASCodeTableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BASCodeTableMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BASCodeTableDetail">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IRFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BASCodeTableDetail" EntityType="Self.BASCodeTableDetail" />
+          <EntitySet Name="BASCodeTableMaster" EntityType="Self.BASCodeTableMaster" />
+          <EntitySet Name="IRF030" EntityType="Self.IRF030" />
+          <EntitySet Name="ODF100" EntityType="Self.ODF100" />
+          <AssociationSet Name="FK_BASCodeTableDeatil_BASCodeTableMaster" Association="Self.FK_BASCodeTableDeatil_BASCodeTableMaster">
+            <End Role="BASCodeTableMaster" EntitySet="BASCodeTableMaster" />
+            <End Role="BASCodeTableDetail" EntitySet="BASCodeTableDetail" />
+          </AssociationSet>
+          <EntitySet Name="UserInfo" EntityType="IRFModel.UserInfo" />
+          <EntitySet Name="WebSite" EntityType="IRFModel.WebSite" />
+          <EntitySet Name="WebSiteType" EntityType="IRFModel.WebSiteType" />
+          <EntitySet Name="WebUserInfo" EntityType="IRFModel.WebUserInfo" />
+          <EntitySet Name="WebUserPage" EntityType="IRFModel.WebUserPage" />
+          <EntitySet Name="WebUserPermission" EntityType="IRFModel.WebUserPermission" />
+          <EntitySet Name="WebUserTab" EntityType="IRFModel.WebUserTab" />
+          <EntitySet Name="WebUserType" EntityType="IRFModel.WebUserType" />
+          <AssociationSet Name="FK_UserInfo_WebUserInfo" Association="IRFModel.FK_UserInfo_WebUserInfo">
+            <End Role="WebUserInfo" EntitySet="WebUserInfo" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_WebUserType" Association="IRFModel.FK_UserInfo_WebUserType">
+            <End Role="WebUserType" EntitySet="WebUserType" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserType_UserInfo" Association="IRFModel.FK_WebUserType_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="WebUserType" EntitySet="WebUserType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserType_UserInfo1" Association="IRFModel.FK_WebUserType_UserInfo1">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="WebUserType" EntitySet="WebUserType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebSite_WebSiteType" Association="IRFModel.FK_WebSite_WebSiteType">
+            <End Role="WebSiteType" EntitySet="WebSiteType" />
+            <End Role="WebSite" EntitySet="WebSite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserPage_WebUserTab" Association="IRFModel.FK_WebUserPage_WebUserTab">
+            <End Role="WebUserTab" EntitySet="WebUserTab" />
+            <End Role="WebUserPage" EntitySet="WebUserPage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUserPermission_WebUserType" Association="IRFModel.FK_WebUserPermission_WebUserType">
+            <End Role="WebUserType" EntitySet="WebUserType" />
+            <End Role="WebUserPermission" EntitySet="WebUserPermission" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserInfo_NO" />
+          </Key>
+          <Property Name="UserInfo_NO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfo_Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_Rcd" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_AD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_PWD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_AppType" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_WebType" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_NationalId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_TwTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserInfo_IsSignException" Type="Boolean" Nullable="false" />
+          <Property Name="UserInfo_IsGiftException" Type="Boolean" Nullable="false" />
+          <Property Name="UserInfo_IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="UserInfo_APPUIId" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_WebUIId" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_ModifyTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserInfo_CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="WebUserInfo" Relationship="IRFModel.FK_UserInfo_WebUserInfo" FromRole="UserInfo" ToRole="WebUserInfo" />
+          <NavigationProperty Name="WebUserType" Relationship="IRFModel.FK_UserInfo_WebUserType" FromRole="UserInfo" ToRole="WebUserType" />
+          <NavigationProperty Name="WebUserType1" Relationship="IRFModel.FK_WebUserType_UserInfo" FromRole="UserInfo" ToRole="WebUserType" />
+          <NavigationProperty Name="WebUserType2" Relationship="IRFModel.FK_WebUserType_UserInfo1" FromRole="UserInfo" ToRole="WebUserType" />
+        </EntityType>
+        <EntityType Name="WebSite">
+          <Key>
+            <PropertyRef Name="WebSite_NO" />
+          </Key>
+          <Property Name="WebSite_NO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WebSite_WebNO" Type="Int32" Nullable="false" />
+          <Property Name="WebSite_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WebSite_Path" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WebSite_IsEnable" Type="Boolean" Nullable="false" />
+          <Property Name="WebSite_ModifyUser" Type="Int32" Nullable="false" />
+          <Property Name="WebSite_CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="WebSite_ModifyTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WebSite_CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="WebSiteType" Relationship="IRFModel.FK_WebSite_WebSiteType" FromRole="WebSite" ToRole="WebSiteType" />
+        </EntityType>
+        <EntityType Name="WebSiteType">
+          <Key>
+            <PropertyRef Name="WebType_No" />
+          </Key>
+          <Property Name="WebType_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WebType_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="WebType_IsEnable" Type="Boolean" Nullable="false" />
+          <Property Name="WebType_Priority" Type="Int32" Nullable="false" />
+          <Property Name="WebType_ModifyUser" Type="Int32" Nullable="false" />
+          <Property Name="WebType_CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="WebType_ModifyTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WebType_CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="WebSite" Relationship="IRFModel.FK_WebSite_WebSiteType" FromRole="WebSiteType" ToRole="WebSite" />
+        </EntityType>
+        <EntityType Name="WebUserInfo">
+          <Key>
+            <PropertyRef Name="WebUI_Id" />
+          </Key>
+          <Property Name="WebUI_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WebUI_Token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WebUI_TokenTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WebUI_ISEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="WebUI_LastLTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WebUI_LTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WebUI_ModifyTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WebUI_CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserInfo" Relationship="IRFModel.FK_UserInfo_WebUserInfo" FromRole="WebUserInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="WebUserPage">
+          <Key>
+            <PropertyRef Name="WUPage_Id" />
+          </Key>
+          <Property Name="WUPage_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WUPage_TabId" Type="Int32" Nullable="false" />
+          <Property Name="WUPage_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WUPage_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WUPage_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WUPage_Path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WUPage_Order" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WebUserTab" Relationship="IRFModel.FK_WebUserPage_WebUserTab" FromRole="WebUserPage" ToRole="WebUserTab" />
+        </EntityType>
+        <EntityType Name="WebUserPermission">
+          <Key>
+            <PropertyRef Name="WUPermission_Id" />
+          </Key>
+          <Property Name="WUPermission_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WUPermission_WUType_Id" Type="Int32" Nullable="false" />
+          <Property Name="WUPermission_WUTab_Id" Type="Int32" Nullable="false" />
+          <Property Name="WUPermission_WUPage_Id" Type="Int32" Nullable="false" />
+          <Property Name="WUPermission_IsEnabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="WebUserType" Relationship="IRFModel.FK_WebUserPermission_WebUserType" FromRole="WebUserPermission" ToRole="WebUserType" />
+        </EntityType>
+        <EntityType Name="WebUserTab">
+          <Key>
+            <PropertyRef Name="WUTab_Id" />
+          </Key>
+          <Property Name="WUTab_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WUTab_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WebUserPage" Relationship="IRFModel.FK_WebUserPage_WebUserTab" FromRole="WebUserTab" ToRole="WebUserPage" />
+        </EntityType>
+        <EntityType Name="WebUserType">
+          <Key>
+            <PropertyRef Name="WUType_Id" />
+          </Key>
+          <Property Name="WUType_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WUType_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WUType_IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="WUType_ModifyUser" Type="Int32" Nullable="false" />
+          <Property Name="WUType_CreateUser" Type="Int32" Nullable="false" />
+          <Property Name="WUType_ModifyTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WUType_CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserInfo" Relationship="IRFModel.FK_UserInfo_WebUserType" FromRole="WebUserType" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo1" Relationship="IRFModel.FK_WebUserType_UserInfo" FromRole="WebUserType" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo2" Relationship="IRFModel.FK_WebUserType_UserInfo1" FromRole="WebUserType" ToRole="UserInfo" />
+          <NavigationProperty Name="WebUserPermission" Relationship="IRFModel.FK_WebUserPermission_WebUserType" FromRole="WebUserType" ToRole="WebUserPermission" />
+        </EntityType>
+        <Association Name="FK_UserInfo_WebUserInfo">
+          <End Type="IRFModel.WebUserInfo" Role="WebUserInfo" Multiplicity="1" />
+          <End Type="IRFModel.UserInfo" Role="UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserInfo">
+              <PropertyRef Name="WebUI_Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserInfo_WebUIId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_WebUserType">
+          <End Type="IRFModel.WebUserType" Role="WebUserType" Multiplicity="1" />
+          <End Type="IRFModel.UserInfo" Role="UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserType">
+              <PropertyRef Name="WUType_Id" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserInfo_WebType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserType_UserInfo">
+          <End Type="IRFModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="IRFModel.WebUserType" Role="WebUserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_NO" />
+            </Principal>
+            <Dependent Role="WebUserType">
+              <PropertyRef Name="WUType_CreateUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserType_UserInfo1">
+          <End Type="IRFModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="IRFModel.WebUserType" Role="WebUserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_NO" />
+            </Principal>
+            <Dependent Role="WebUserType">
+              <PropertyRef Name="WUType_ModifyUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebSite_WebSiteType">
+          <End Type="IRFModel.WebSiteType" Role="WebSiteType" Multiplicity="1" />
+          <End Type="IRFModel.WebSite" Role="WebSite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebSiteType">
+              <PropertyRef Name="WebType_No" />
+            </Principal>
+            <Dependent Role="WebSite">
+              <PropertyRef Name="WebSite_WebNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserPage_WebUserTab">
+          <End Type="IRFModel.WebUserTab" Role="WebUserTab" Multiplicity="1" />
+          <End Type="IRFModel.WebUserPage" Role="WebUserPage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserTab">
+              <PropertyRef Name="WUTab_Id" />
+            </Principal>
+            <Dependent Role="WebUserPage">
+              <PropertyRef Name="WUPage_TabId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUserPermission_WebUserType">
+          <End Type="IRFModel.WebUserType" Role="WebUserType" Multiplicity="1" />
+          <End Type="IRFModel.WebUserPermission" Role="WebUserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUserType">
+              <PropertyRef Name="WUType_Id" />
+            </Principal>
+            <Dependent Role="WebUserPermission">
+              <PropertyRef Name="WUPermission_WUType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IRFModelStoreContainer" CdmEntityContainer="IRFEntities">
+          <EntitySetMapping Name="BASCodeTableDetail">
+            <EntityTypeMapping TypeName="IRFModel.BASCodeTableDetail">
+              <MappingFragment StoreEntitySet="BASCodeTableDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="LngNo" ColumnName="LngNo" />
+                <ScalarProperty Name="TypeNo" ColumnName="TypeNo" />
+                <ScalarProperty Name="KeyNo" ColumnName="KeyNo" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+                <ScalarProperty Name="Descr2" ColumnName="Descr2" />
+                <ScalarProperty Name="Attribute01" ColumnName="Attribute01" />
+                <ScalarProperty Name="Attribute02" ColumnName="Attribute02" />
+                <ScalarProperty Name="Attribute03" ColumnName="Attribute03" />
+                <ScalarProperty Name="Attribute04" ColumnName="Attribute04" />
+                <ScalarProperty Name="Attribute05" ColumnName="Attribute05" />
+                <ScalarProperty Name="Attribute06" ColumnName="Attribute06" />
+                <ScalarProperty Name="AttributeDesp" ColumnName="AttributeDesp" />
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+                <ScalarProperty Name="OrderSR" ColumnName="OrderSR" />
+                <ScalarProperty Name="AddUserNo" ColumnName="AddUserNo" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="ModifyUserNo" ColumnName="ModifyUserNo" />
+                <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BASCodeTableMaster">
+            <EntityTypeMapping TypeName="IRFModel.BASCodeTableMaster">
+              <MappingFragment StoreEntitySet="BASCodeTableMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeNo" ColumnName="TypeNo" />
+                <ScalarProperty Name="TypeDescr" ColumnName="TypeDescr" />
+                <ScalarProperty Name="KeyNoLength" ColumnName="KeyNoLength" />
+                <ScalarProperty Name="IsSyncViaSap" ColumnName="IsSyncViaSap" />
+                <ScalarProperty Name="AddUserNo" ColumnName="AddUserNo" />
+                <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="ModifyUserNo" ColumnName="ModifyUserNo" />
+                <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IRF030">
+            <EntityTypeMapping TypeName="IRFModel.IRF030">
+              <MappingFragment StoreEntitySet="IRF030">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SYS_NO" ColumnName="SYS_NO" />
+                <ScalarProperty Name="DOOR" ColumnName="DOOR" />
+                <ScalarProperty Name="DOOR_POINT" ColumnName="DOOR_POINT" />
+                <ScalarProperty Name="W_STN" ColumnName="W_STN" />
+                <ScalarProperty Name="PLAN_W" ColumnName="PLAN_W" />
+                <ScalarProperty Name="IR_ROUND" ColumnName="IR_ROUND" />
+                <ScalarProperty Name="SYS45_LOSS" ColumnName="SYS45_LOSS" />
+                <ScalarProperty Name="IR_W1_1" ColumnName="IR_W1_1" />
+                <ScalarProperty Name="IR_W1_2" ColumnName="IR_W1_2" />
+                <ScalarProperty Name="IR_W2" ColumnName="IR_W2" />
+                <ScalarProperty Name="IR_W3" ColumnName="IR_W3" />
+                <ScalarProperty Name="DRY" ColumnName="DRY" />
+                <ScalarProperty Name="RAIN_1" ColumnName="RAIN_1" />
+                <ScalarProperty Name="RAIN_2" ColumnName="RAIN_2" />
+                <ScalarProperty Name="RAIN_3" ColumnName="RAIN_3" />
+                <ScalarProperty Name="RAIN_4" ColumnName="RAIN_4" />
+                <ScalarProperty Name="RAIN_5" ColumnName="RAIN_5" />
+                <ScalarProperty Name="RAIN_6" ColumnName="RAIN_6" />
+                <ScalarProperty Name="RAIN_7" ColumnName="RAIN_7" />
+                <ScalarProperty Name="RAIN_8" ColumnName="RAIN_8" />
+                <ScalarProperty Name="RAIN_9" ColumnName="RAIN_9" />
+                <ScalarProperty Name="RAIN_10" ColumnName="RAIN_10" />
+                <ScalarProperty Name="RAIN_11" ColumnName="RAIN_11" />
+                <ScalarProperty Name="RAIN_12" ColumnName="RAIN_12" />
+                <ScalarProperty Name="SOIL" ColumnName="SOIL" />
+                <ScalarProperty Name="POINT_LOSS" ColumnName="POINT_LOSS" />
+                <ScalarProperty Name="DRY1" ColumnName="DRY1" />
+                <ScalarProperty Name="create_user_id" ColumnName="create_user_id" />
+                <ScalarProperty Name="create_datetime" ColumnName="create_datetime" />
+                <ScalarProperty Name="modify_user_id" ColumnName="modify_user_id" />
+                <ScalarProperty Name="modify_datetime" ColumnName="modify_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ODF100">
+            <EntityTypeMapping TypeName="IRFModel.ODF100">
+              <MappingFragment StoreEntitySet="ODF100">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="addr" ColumnName="addr" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="newunit" ColumnName="newunit" />
+                <ScalarProperty Name="newname" ColumnName="newname" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="IRFModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="UserInfo_CreateTime" ColumnName="UserInfo_CreateTime" />
+                <ScalarProperty Name="UserInfo_ModifyTime" ColumnName="UserInfo_ModifyTime" />
+                <ScalarProperty Name="UserInfo_WebUIId" ColumnName="UserInfo_WebUIId" />
+                <ScalarProperty Name="UserInfo_APPUIId" ColumnName="UserInfo_APPUIId" />
+                <ScalarProperty Name="UserInfo_IsEnabled" ColumnName="UserInfo_IsEnabled" />
+                <ScalarProperty Name="UserInfo_IsGiftException" ColumnName="UserInfo_IsGiftException" />
+                <ScalarProperty Name="UserInfo_IsSignException" ColumnName="UserInfo_IsSignException" />
+                <ScalarProperty Name="UserInfo_TwTitle" ColumnName="UserInfo_TwTitle" />
+                <ScalarProperty Name="UserInfo_NationalId" ColumnName="UserInfo_NationalId" />
+                <ScalarProperty Name="UserInfo_WebType" ColumnName="UserInfo_WebType" />
+                <ScalarProperty Name="UserInfo_AppType" ColumnName="UserInfo_AppType" />
+                <ScalarProperty Name="UserInfo_Name" ColumnName="UserInfo_Name" />
+                <ScalarProperty Name="UserInfo_Phone" ColumnName="UserInfo_Phone" />
+                <ScalarProperty Name="UserInfo_Email" ColumnName="UserInfo_Email" />
+                <ScalarProperty Name="UserInfo_PWD" ColumnName="UserInfo_PWD" />
+                <ScalarProperty Name="UserInfo_AD" ColumnName="UserInfo_AD" />
+                <ScalarProperty Name="UserInfo_Rcd" ColumnName="UserInfo_Rcd" />
+                <ScalarProperty Name="UserInfo_Id" ColumnName="UserInfo_Id" />
+                <ScalarProperty Name="UserInfo_NO" ColumnName="UserInfo_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebSite">
+            <EntityTypeMapping TypeName="IRFModel.WebSite">
+              <MappingFragment StoreEntitySet="WebSite">
+                <ScalarProperty Name="WebSite_CreateTime" ColumnName="WebSite_CreateTime" />
+                <ScalarProperty Name="WebSite_ModifyTime" ColumnName="WebSite_ModifyTime" />
+                <ScalarProperty Name="WebSite_CreateUser" ColumnName="WebSite_CreateUser" />
+                <ScalarProperty Name="WebSite_ModifyUser" ColumnName="WebSite_ModifyUser" />
+                <ScalarProperty Name="WebSite_IsEnable" ColumnName="WebSite_IsEnable" />
+                <ScalarProperty Name="WebSite_Path" ColumnName="WebSite_Path" />
+                <ScalarProperty Name="WebSite_Name" ColumnName="WebSite_Name" />
+                <ScalarProperty Name="WebSite_WebNO" ColumnName="WebSite_WebNO" />
+                <ScalarProperty Name="WebSite_NO" ColumnName="WebSite_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebSiteType">
+            <EntityTypeMapping TypeName="IRFModel.WebSiteType">
+              <MappingFragment StoreEntitySet="WebSiteType">
+                <ScalarProperty Name="WebType_CreateTime" ColumnName="WebType_CreateTime" />
+                <ScalarProperty Name="WebType_ModifyTime" ColumnName="WebType_ModifyTime" />
+                <ScalarProperty Name="WebType_CreateUser" ColumnName="WebType_CreateUser" />
+                <ScalarProperty Name="WebType_ModifyUser" ColumnName="WebType_ModifyUser" />
+                <ScalarProperty Name="WebType_Priority" ColumnName="WebType_Priority" />
+                <ScalarProperty Name="WebType_IsEnable" ColumnName="WebType_IsEnable" />
+                <ScalarProperty Name="WebType_Name" ColumnName="WebType_Name" />
+                <ScalarProperty Name="WebType_No" ColumnName="WebType_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUserInfo">
+            <EntityTypeMapping TypeName="IRFModel.WebUserInfo">
+              <MappingFragment StoreEntitySet="WebUserInfo">
+                <ScalarProperty Name="WebUI_CreateTime" ColumnName="WebUI_CreateTime" />
+                <ScalarProperty Name="WebUI_ModifyTime" ColumnName="WebUI_ModifyTime" />
+                <ScalarProperty Name="WebUI_LTime" ColumnName="WebUI_LTime" />
+                <ScalarProperty Name="WebUI_LastLTime" ColumnName="WebUI_LastLTime" />
+                <ScalarProperty Name="WebUI_ISEnabled" ColumnName="WebUI_ISEnabled" />
+                <ScalarProperty Name="WebUI_TokenTime" ColumnName="WebUI_TokenTime" />
+                <ScalarProperty Name="WebUI_Token" ColumnName="WebUI_Token" />
+                <ScalarProperty Name="WebUI_Id" ColumnName="WebUI_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUserPage">
+            <EntityTypeMapping TypeName="IRFModel.WebUserPage">
+              <MappingFragment StoreEntitySet="WebUserPage">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="WUPage_Order" ColumnName="WUPage_Order" />
+                <ScalarProperty Name="WUPage_Path" ColumnName="WUPage_Path" />
+                <ScalarProperty Name="WUPage_No" ColumnName="WUPage_No" />
+                <ScalarProperty Name="WUPage_Type" ColumnName="WUPage_Type" />
+                <ScalarProperty Name="WUPage_Name" ColumnName="WUPage_Name" />
+                <ScalarProperty Name="WUPage_TabId" ColumnName="WUPage_TabId" />
+                <ScalarProperty Name="WUPage_Id" ColumnName="WUPage_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUserPermission">
+            <EntityTypeMapping TypeName="IRFModel.WebUserPermission">
+              <MappingFragment StoreEntitySet="WebUserPermission">
+                <ScalarProperty Name="WUPermission_IsEnabled" ColumnName="WUPermission_IsEnabled" />
+                <ScalarProperty Name="WUPermission_WUPage_Id" ColumnName="WUPermission_WUPage_Id" />
+                <ScalarProperty Name="WUPermission_WUTab_Id" ColumnName="WUPermission_WUTab_Id" />
+                <ScalarProperty Name="WUPermission_WUType_Id" ColumnName="WUPermission_WUType_Id" />
+                <ScalarProperty Name="WUPermission_Id" ColumnName="WUPermission_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUserTab">
+            <EntityTypeMapping TypeName="IRFModel.WebUserTab">
+              <MappingFragment StoreEntitySet="WebUserTab">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="WUTab_Name" ColumnName="WUTab_Name" />
+                <ScalarProperty Name="WUTab_Id" ColumnName="WUTab_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUserType">
+            <EntityTypeMapping TypeName="IRFModel.WebUserType">
+              <MappingFragment StoreEntitySet="WebUserType">
+                <ScalarProperty Name="WUType_CreateTime" ColumnName="WUType_CreateTime" />
+                <ScalarProperty Name="WUType_ModifyTime" ColumnName="WUType_ModifyTime" />
+                <ScalarProperty Name="WUType_CreateUser" ColumnName="WUType_CreateUser" />
+                <ScalarProperty Name="WUType_ModifyUser" ColumnName="WUType_ModifyUser" />
+                <ScalarProperty Name="WUType_IsEnabled" ColumnName="WUType_IsEnabled" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="WUType_Name" ColumnName="WUType_Name" />
+                <ScalarProperty Name="WUType_Id" ColumnName="WUType_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

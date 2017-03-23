@@ -6,7 +6,29 @@ using System.Threading.Tasks;
 
 namespace SSoft.MVC.Events
 {
+    public class ExportExcelEventArgs : System.EventArgs
+    {
+        public bool Cancel { get; set; }
+        public string Message { get; set; }
+        public object Workbook { get; set; }
+        public object Sheet { get; set; }
 
+        public object Style { get; set; }
+
+        public dynamic Entity { get; set; }
+
+        public int FirstGridRow { get; set; }
+
+        public ExportExcelEventArgs(bool cancel, string message, object workbook, object sheet, object entity, int firstGridRow)
+        {
+            this.Cancel = cancel;
+            this.Message = message;
+            this.Workbook = workbook;
+            this.Sheet = sheet;
+            this.Entity = entity;
+            this.FirstGridRow = firstGridRow;
+        }
+    }
     public class FileUploadEventArgs : System.EventArgs
     {
         public bool Cancel { get; set; }
@@ -15,8 +37,11 @@ namespace SSoft.MVC.Events
         public string FilePath { get; set; }
         public long FileSize { get; set; }
         public string GUID { get; set; }
+        public object Data { get; set; }
 
-        public FileUploadEventArgs(bool cancel,string fileName, string filePath, long fileSize, string guid)
+        public object MultipartFormData { get; set; }
+
+        public FileUploadEventArgs(bool cancel, string fileName, string filePath, long fileSize, string guid)
         {
             this.Cancel = cancel;
             this.FileName = fileName;

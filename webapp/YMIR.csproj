@@ -47,6 +47,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Dynamic">
+      <HintPath>..\DynamicQuery\bin\Debug\Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -68,11 +71,24 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="SSoft, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SSoftLib\bin\Debug\SSoft.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -517,6 +533,16 @@
     <Content Include="Content\xml\gmap\pins.xml" />
     <Content Include="Global.asax" />
     <Content Include="Html1.html" />
+    <Content Include="Models\IRF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IRF.edmx</DependentUpon>
+      <LastGenOutput>IRF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\IRF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IRF.edmx</DependentUpon>
+      <LastGenOutput>IRF.cs</LastGenOutput>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -537,6 +563,18 @@
     <Content Include="Content\fonts\fontawesome4.2\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome4.2\FontAwesome.otf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\IRF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IRF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\IRF.edmx.diagram">
+      <DependentUpon>IRF.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DBContext\IFR_DBContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>IFR_DBContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <None Include="Properties\PublishProfiles\SmartAdmin - Release.pubxml" />
     <None Include="Properties\PublishProfiles\SmartAdmin - Debug.pubxml" />
@@ -1885,6 +1923,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Landing\Controllers\LandingController.cs" />
     <Compile Include="Areas\Landing\LandingAreaRegistration.cs" />
+    <Compile Include="Common\DDDWSource.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Common\ImageHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppViewsController.cs" />
     <Compile Include="Controllers\BAS\API\BAS001\BAS001Controller.cs" />
@@ -1900,11 +1941,74 @@
     <Compile Include="Controllers\IconsController.cs" />
     <Compile Include="Controllers\IntelController.cs" />
     <Compile Include="Controllers\MiscController.cs" />
+    <Compile Include="Controllers\SYSBase\BaseAPIController.cs" />
+    <Compile Include="Controllers\SYSBase\BaseController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BASCodeTableDetail.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BASCodeTableMaster.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBContext\IFR_DBContext.cs">
+      <DependentUpon>IFR_DBContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBContext\IFR_DBContext.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IFR_DBContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IRF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IRF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IRF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IRF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IRF.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IRF030.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ODF100.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sys\MenuModel.cs" />
+    <Compile Include="Models\Sys\UploadDataModel.cs" />
+    <Compile Include="Models\UserInfo.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebSite.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebSiteType.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebUserInfo.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebUserPage.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebUserPermission.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebUserTab.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebUserType.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
@@ -1918,7 +2022,13 @@
     <Folder Include="Controllers\MAN\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\DBContext\IFR_DBContext.dbml.layout">
+      <DependentUpon>IFR_DBContext.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

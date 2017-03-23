@@ -31,6 +31,7 @@ namespace SSoft.MVC
         //public string Display19 { get; set; }
         //public string Display20 { get; set; }
         public int intValue { get; set; }
+        public int Int01 { get; set; }
         public bool BooleanValue { get; set; }
         public List<DisplayValue> ChildDisplayValues { get; set; }
 
