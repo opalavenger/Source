@@ -5,26 +5,42 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="555de989b21741d6a522782fe29e26a2" Name="Diagram1">
-        <EntityTypeShape EntityType="IRFModel.BASCodeTableDetail" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IRFModel.BASCodeTableMaster" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IRFModel.IRF030" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IRFModel.ODF100" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="IRFModel.FK_BASCodeTableDeatil_BASCodeTableMaster" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="IRFModel.UserInfo" Width="1.5" PointX="3" PointY="9.125" />
-        <EntityTypeShape EntityType="IRFModel.WebSite" Width="1.5" PointX="12" PointY="9" />
-        <EntityTypeShape EntityType="IRFModel.WebSiteType" Width="1.5" PointX="9.75" PointY="9" />
-        <EntityTypeShape EntityType="IRFModel.WebUserInfo" Width="1.5" PointX="0.75" PointY="10.375" />
-        <EntityTypeShape EntityType="IRFModel.WebUserPage" Width="1.5" PointX="11" PointY="5" />
-        <EntityTypeShape EntityType="IRFModel.WebUserPermission" Width="1.5" PointX="7.5" PointY="10.625" />
-        <EntityTypeShape EntityType="IRFModel.WebUserTab" Width="1.5" PointX="8.75" PointY="5.375" />
-        <EntityTypeShape EntityType="IRFModel.WebUserType" Width="1.5" PointX="5.25" PointY="10.125" />
-        <AssociationConnector Association="IRFModel.FK_UserInfo_WebUserInfo" />
-        <AssociationConnector Association="IRFModel.FK_UserInfo_WebUserType" />
-        <AssociationConnector Association="IRFModel.FK_WebUserType_UserInfo" />
-        <AssociationConnector Association="IRFModel.FK_WebUserType_UserInfo1" />
-        <AssociationConnector Association="IRFModel.FK_WebSite_WebSiteType" />
-        <AssociationConnector Association="IRFModel.FK_WebUserPage_WebUserTab" />
-        <AssociationConnector Association="IRFModel.FK_WebUserPermission_WebUserType" />
+        <EntityTypeShape EntityType="IRFModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IRFModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="IRFModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="IRFModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="IRFModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="IRFModel.ATTRDL" Width="1.5" PointX="13" PointY="8" />
+        <EntityTypeShape EntityType="IRFModel.ATTRMT" Width="1.5" PointX="10.75" PointY="8.75" />
+        <EntityTypeShape EntityType="IRFModel.BASCodeTableDetail" Width="1.5" PointX="13" PointY="1.125" />
+        <EntityTypeShape EntityType="IRFModel.BASCodeTableMaster" Width="1.5" PointX="10.75" PointY="2.125" />
+        <EntityTypeShape EntityType="IRFModel.GRPNO" Width="1.5" PointX="5.75" PointY="8.25" />
+        <EntityTypeShape EntityType="IRFModel.GRPPMS" Width="1.5" PointX="8" PointY="7.125" />
+        <EntityTypeShape EntityType="IRFModel.IRF030" Width="1.5" PointX="5.75" PointY="13.75" />
+        <EntityTypeShape EntityType="IRFModel.MENU" Width="1.5" PointX="7.75" PointY="13.75" />
+        <EntityTypeShape EntityType="IRFModel.ODF100" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IRFModel.PRGNO" Width="1.5" PointX="9.75" PointY="13.75" />
+        <EntityTypeShape EntityType="IRFModel.SYSBLOB" Width="1.5" PointX="11.75" PointY="13.75" />
+        <EntityTypeShape EntityType="IRFModel.SYSCONFG" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="IRFModel.SYSNO" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IRFModel.USRGRP" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="IRFModel.USRNO" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="IRFModel.USRPMS" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="IRFModel.vw_MENU" Width="1.5" PointX="15.75" PointY="4.75" />
+        <EntityTypeShape EntityType="IRFModel.vw_PRGNO" Width="1.5" PointX="15.75" PointY="7.75" />
+        <EntityTypeShape EntityType="IRFModel.vw_System_Program" Width="1.5" PointX="15.75" PointY="10.75" />
+        <EntityTypeShape EntityType="IRFModel.vw_System_Program_Menu" Width="1.5" PointX="15.75" PointY="15.75" />
+        <EntityTypeShape EntityType="IRFModel.vw_System_Program_Menu_GROUP" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IRFModel.vw_System_Program_Menu_USER" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="IRFModel.vw_System_Program_Menu_USER_PMS" Width="1.5" PointX="2.75" PointY="17.75" />
+        <AssociationConnector Association="IRFModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="IRFModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="IRFModel.FK_ATTRDL_ATTRMT" />
+        <AssociationConnector Association="IRFModel.FK_BASCodeTableDeatil_BASCodeTableMaster" />
+        <AssociationConnector Association="IRFModel.FK_GRPPMS_GRPNO" />
+        <AssociationConnector Association="IRFModel.FK_USRGRP_USRNO" />
+        <AssociationConnector Association="IRFModel.FK_USRPMS_USRNO" />
+        <AssociationConnector Association="IRFModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,19 +12,26 @@ namespace YMIR.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class WebUserTab
+    public partial class GRPNO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WebUserTab()
+        public GRPNO()
         {
-            this.WebUserPage = new HashSet<WebUserPage>();
+            this.GRPPMS = new HashSet<GRPPMS>();
         }
     
-        public int WUTab_Id { get; set; }
-        public string WUTab_Name { get; set; }
-        public string Note { get; set; }
+        public System.Guid ID { get; set; }
+        public string GRP_NO { get; set; }
+        public string GRP_NM { get; set; }
+        public string OWNER_USR_NO { get; set; }
+        public string OWNER_GRP_NO { get; set; }
+        public Nullable<System.DateTime> ADD_DT { get; set; }
+        public string MDY_USR_NO { get; set; }
+        public Nullable<System.DateTime> MDY_DT { get; set; }
+        public string IP_NM { get; set; }
+        public string CP_NM { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WebUserPage> WebUserPage { get; set; }
+        public virtual ICollection<GRPPMS> GRPPMS { get; set; }
     }
 }

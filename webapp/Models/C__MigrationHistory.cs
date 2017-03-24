@@ -12,17 +12,11 @@ namespace YMIR.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class WebUserPage
+    public partial class C__MigrationHistory
     {
-        public int WUPage_Id { get; set; }
-        public int WUPage_TabId { get; set; }
-        public string WUPage_Name { get; set; }
-        public string WUPage_Type { get; set; }
-        public string WUPage_No { get; set; }
-        public string WUPage_Path { get; set; }
-        public Nullable<int> WUPage_Order { get; set; }
-        public string Note { get; set; }
-    
-        public virtual WebUserTab WebUserTab { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

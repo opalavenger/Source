@@ -12,24 +12,18 @@ namespace YMIR.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class WebSiteType
+    public partial class AspNetRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WebSiteType()
+        public AspNetRoles()
         {
-            this.WebSite = new HashSet<WebSite>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public int WebType_No { get; set; }
-        public string WebType_Name { get; set; }
-        public bool WebType_IsEnable { get; set; }
-        public int WebType_Priority { get; set; }
-        public int WebType_ModifyUser { get; set; }
-        public int WebType_CreateUser { get; set; }
-        public System.DateTime WebType_ModifyTime { get; set; }
-        public System.DateTime WebType_CreateTime { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WebSite> WebSite { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

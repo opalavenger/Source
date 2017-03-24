@@ -1948,10 +1948,31 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRoles.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ATTRDL.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ATTRMT.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BASCodeTableDetail.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BASCodeTableMaster.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBContext\IFR_DBContext.cs">
@@ -1961,6 +1982,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IFR_DBContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GRPNO.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GRPPMS.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IRF.Context.cs">
       <AutoGen>True</AutoGen>
@@ -1980,33 +2007,54 @@
     <Compile Include="Models\IRF030.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MENU.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ODF100.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRGNO.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSBLOB.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSCONFG.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSNO.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sys\MenuModel.cs" />
     <Compile Include="Models\Sys\UploadDataModel.cs" />
-    <Compile Include="Models\UserInfo.cs">
+    <Compile Include="Models\USRGRP.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebSite.cs">
+    <Compile Include="Models\USRNO.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebSiteType.cs">
+    <Compile Include="Models\USRPMS.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebUserInfo.cs">
+    <Compile Include="Models\vw_MENU.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebUserPage.cs">
+    <Compile Include="Models\vw_PRGNO.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebUserPermission.cs">
+    <Compile Include="Models\vw_System_Program.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebUserTab.cs">
+    <Compile Include="Models\vw_System_Program_Menu.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\WebUserType.cs">
+    <Compile Include="Models\vw_System_Program_Menu_GROUP.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_System_Program_Menu_USER.cs">
+      <DependentUpon>IRF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_System_Program_Menu_USER_PMS.cs">
       <DependentUpon>IRF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

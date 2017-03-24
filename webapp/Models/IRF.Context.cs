@@ -25,17 +25,33 @@ namespace YMIR.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<ATTRDL> ATTRDL { get; set; }
+        public virtual DbSet<ATTRMT> ATTRMT { get; set; }
         public virtual DbSet<BASCodeTableDetail> BASCodeTableDetail { get; set; }
         public virtual DbSet<BASCodeTableMaster> BASCodeTableMaster { get; set; }
+        public virtual DbSet<GRPNO> GRPNO { get; set; }
+        public virtual DbSet<GRPPMS> GRPPMS { get; set; }
         public virtual DbSet<IRF030> IRF030 { get; set; }
+        public virtual DbSet<MENU> MENU { get; set; }
         public virtual DbSet<ODF100> ODF100 { get; set; }
-        public virtual DbSet<UserInfo> UserInfo { get; set; }
-        public virtual DbSet<WebSite> WebSite { get; set; }
-        public virtual DbSet<WebSiteType> WebSiteType { get; set; }
-        public virtual DbSet<WebUserInfo> WebUserInfo { get; set; }
-        public virtual DbSet<WebUserPage> WebUserPage { get; set; }
-        public virtual DbSet<WebUserPermission> WebUserPermission { get; set; }
-        public virtual DbSet<WebUserTab> WebUserTab { get; set; }
-        public virtual DbSet<WebUserType> WebUserType { get; set; }
+        public virtual DbSet<PRGNO> PRGNO { get; set; }
+        public virtual DbSet<SYSBLOB> SYSBLOB { get; set; }
+        public virtual DbSet<SYSCONFG> SYSCONFG { get; set; }
+        public virtual DbSet<SYSNO> SYSNO { get; set; }
+        public virtual DbSet<USRGRP> USRGRP { get; set; }
+        public virtual DbSet<USRNO> USRNO { get; set; }
+        public virtual DbSet<USRPMS> USRPMS { get; set; }
+        public virtual DbSet<vw_MENU> vw_MENU { get; set; }
+        public virtual DbSet<vw_PRGNO> vw_PRGNO { get; set; }
+        public virtual DbSet<vw_System_Program> vw_System_Program { get; set; }
+        public virtual DbSet<vw_System_Program_Menu> vw_System_Program_Menu { get; set; }
+        public virtual DbSet<vw_System_Program_Menu_GROUP> vw_System_Program_Menu_GROUP { get; set; }
+        public virtual DbSet<vw_System_Program_Menu_USER> vw_System_Program_Menu_USER { get; set; }
+        public virtual DbSet<vw_System_Program_Menu_USER_PMS> vw_System_Program_Menu_USER_PMS { get; set; }
     }
 }

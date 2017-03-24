@@ -36,7 +36,7 @@ namespace YMIR.Controllers.SYSBase
         
         //Models.VAN_DBEntities _db = new Models.VAN_DBEntities();
         public Models.IRFEntities DB { get; set; }
-        public int ProgramId { get; set; }
+        public string ProgramId { get; set; }
  
         public BaseAPIController()
         {
@@ -52,11 +52,11 @@ namespace YMIR.Controllers.SYSBase
 
             string ProgramNo = controller_name;
            
-            var findProgram = this.DB.WebUserPage.Where(t => t.WUPage_No == ProgramNo);
+            var findProgram = this.DB.PRGNO.Where(t => t.PRG_NO == ProgramNo);
 
             if (findProgram.Count() > 0)
             {
-                this.ProgramId = this.DB.WebUserPage.Where(t => t.WUPage_No == ProgramNo).First().WUPage_Id;
+                this.ProgramId = this.DB.PRGNO.Where(t => t.PRG_NO == ProgramNo).First().ID.ToString();
             }
         }
         public HttpResponseMessage GetPartialView(string id)

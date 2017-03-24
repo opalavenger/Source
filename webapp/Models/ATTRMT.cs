@@ -12,24 +12,28 @@ namespace YMIR.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class WebUserInfo
+    public partial class ATTRMT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WebUserInfo()
+        public ATTRMT()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.ATTRDL = new HashSet<ATTRDL>();
         }
     
-        public int WebUI_Id { get; set; }
-        public string WebUI_Token { get; set; }
-        public System.DateTime WebUI_TokenTime { get; set; }
-        public bool WebUI_ISEnabled { get; set; }
-        public System.DateTime WebUI_LastLTime { get; set; }
-        public System.DateTime WebUI_LTime { get; set; }
-        public System.DateTime WebUI_ModifyTime { get; set; }
-        public System.DateTime WebUI_CreateTime { get; set; }
+        public System.Guid ID { get; set; }
+        public string ATTR_TY { get; set; }
+        public string ATTR_NM { get; set; }
+        public string C_SOURCE { get; set; }
+        public string REMK { get; set; }
+        public string OWNER_USR_NO { get; set; }
+        public string OWNER_GRP_NO { get; set; }
+        public Nullable<System.DateTime> ADD_DT { get; set; }
+        public string MDY_USR_NO { get; set; }
+        public Nullable<System.DateTime> MDY_DT { get; set; }
+        public string IP_NM { get; set; }
+        public string CP_NM { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<ATTRDL> ATTRDL { get; set; }
     }
 }

@@ -12,14 +12,11 @@ namespace YMIR.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class WebUserPermission
+    public partial class vw_MENU
     {
-        public int WUPermission_Id { get; set; }
-        public int WUPermission_WUType_Id { get; set; }
-        public int WUPermission_WUTab_Id { get; set; }
-        public int WUPermission_WUPage_Id { get; set; }
-        public bool WUPermission_IsEnabled { get; set; }
-    
-        public virtual WebUserType WebUserType { get; set; }
+        public string SYS_NO { get; set; }
+        public string SYS_NM { get; set; }
+        public System.Guid ID { get; set; }
+        public Nullable<int> SYS_SR { get; set; }
     }
 }

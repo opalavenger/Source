@@ -12,7 +12,7 @@ namespace YMIR.Controllers.BAS.CRL.BAS001
         public ActionResult Index()
         {
 
-            if (this.IsAllow != false)
+            if (this.IsAllow == false)
             {
                 System.Web.Security.FormsAuthentication.SignOut();
                 this.Session.Abandon();
@@ -24,7 +24,7 @@ namespace YMIR.Controllers.BAS.CRL.BAS001
             //定義DropDownList Source
             this.DDDWWrapper = new
             {
-                DDDW_UserInfo = Common.DDDWSource.DDDW_UserInfo()
+               // DDDW_UserInfo = Common.DDDWSource.DDDW_UserInfo()
             };
 
             this.ViewBag.RenderJavascript = this.GetRenderJavascript();

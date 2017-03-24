@@ -18,20 +18,23 @@ namespace YMIR.Controllers.SYSBase
     {
         // GET: Base
         YMIR.Models.IRFEntities IRF_DB { get; set; }
-        public string ProgramNo {
-            get { if (this.ViewBag.ProgramNo == null)
+        public string ProgramNo
+        {
+            get
+            {
+                if (this.ViewBag.ProgramNo == null)
                     this.ViewBag.ProgramNo = "";
                 return this.ViewBag.ProgramNo;
-                    }
+            }
             set { this.ViewBag.ProgramNo = value; }
         }
 
-        public int ProgramId
+        public string ProgramId
         {
             get
             {
                 if (this.ViewBag.ProgramId == null)
-                    this.ViewBag.ProgramId = 0;
+                    this.ViewBag.ProgramId = "";
                 return this.ViewBag.ProgramId;
             }
             set { this.ViewBag.ProgramId = value; }
@@ -65,7 +68,7 @@ namespace YMIR.Controllers.SYSBase
         public BaseController()
         {
             this.IRF_DB = new Models.IRFEntities();
-           
+
 
         }
 
@@ -75,74 +78,98 @@ namespace YMIR.Controllers.SYSBase
             base.Initialize(requestContext);
 
             string applicationPath = requestContext.HttpContext.Request.ApplicationPath == "/" ? "" : Request.ApplicationPath;
-            DataTable dt = SSoft.Data.SqlHelper.SelectTable(@"SELECT     WebUserTab.WUTab_Id as SystemId,     WebUserTab.WUTab_Name as SystemName, WebUserPage.WUPage_Type as ProgramType, WebUserPage.WUPage_Id   as ProgramId,
- WebUserPage.WUPage_No as ProgramNo, WebUserPage.WUPage_Name as ProgramName, WebUserPage.WUPage_Path as ProgramPath, 
-                            isnull(WebUserPage.WUPage_Order,0) as ProgarmOrder
-                           
-FROM              WebUserTab INNER JOIN
-                            WebUserPage ON WebUserTab.WUTab_Id = WebUserPage.WUPage_TabId INNER JOIN
-                            WebUserType INNER JOIN
-                            WebUserPermission ON WebUserType.WUType_Id = WebUserPermission.WUPermission_WUType_Id INNER JOIN
-                            UserInfo ON WebUserType.WUType_Id = UserInfo.UserInfo_WebType ON 
-                            WebUserPage.WUPage_TabId = WebUserPermission.WUPermission_WUTab_Id AND 
-                            WebUserPage.WUPage_Id = WebUserPermission.WUPermission_WUPage_Id  where UserInfo.UserInfo_NO=@UserInfo_NO", new SqlParameter[] { new SqlParameter("@UserInfo_NO", SSoft.Web.Security.User.Emp_ID) });
+
+
+            DataTable dt = SSoft.Data.SqlHelper.SelectTable(@"SELECT * From vw_System_Program", new SqlParameter[] { new SqlParameter("@UserInfo_NO", SSoft.Web.Security.User.Emp_ID) });
 
             var programList = dt.AsEnumerable().Select(t => new YMIR.Models.Sys.MenuModel
             {
-                SystemId = t.Field<int>("SystemId"),
-                SystemName = t.Field<string>("SystemName"),
-                ProgramType = t.Field<string>("ProgramType"),
-                ProgramId = t.Field<int>("ProgramId"),
-                ProgramNo = t.Field<string>("ProgramNo"),
-                ProgramName = t.Field<string>("ProgramName"),
-                ProgramPath = t.Field<string>("ProgramPath"),
-                ProgarmOrder = t.Field<int>("ProgarmOrder")
+                SystemId = t.Field<Guid>("SYS_SYSTEMNO_Id"),
+                SystemName = t.Field<string>("SYSNO_NAME"),
+                SystemClass = t.Field<string>("SYS_CLASS"),
+                ProgramType = t.Field<string>("PROGRAMNO_NAME"),
+                ProgramId = t.Field<Guid>("ID"),
+                ProgramNo = t.Field<string>("PRGNO"),
+                ProgramName = t.Field<string>("PROGRAMNO_NAME"),
+                ProgramPath = t.Field<string>("PROG_URL1"),
+                ProgarmOrder = t.Field<int>("PROGRAMNO_ORDERID")
             }).ToList();
             this.ProgramList = programList;
             List<DisplayValue> menu = new List<DisplayValue>();
-            var systemGroup = programList.OrderBy(t => t.SystemId).GroupBy(t => new { t.SystemId, t.SystemName });
+            var systemGroup = programList.OrderBy(t => t.SystemId).GroupBy(t => new { t.SystemId, t.SystemName, t.SystemClass });
             int index = 0;
             foreach (var g1 in systemGroup)
             {
                 DisplayValue sysDisplayValue = new DisplayValue();
                 sysDisplayValue.Value = g1.Key.SystemId.ToString();
                 sysDisplayValue.Display = g1.Key.SystemName.ToString();
-                sysDisplayValue.Display1 = "m_" + g1.Key.SystemId.ToString("00");
-                sysDisplayValue.Display2 = "m_" + g1.Key.SystemId.ToString("00");
-                sysDisplayValue.Display3 = "m_" + g1.Key.SystemId.ToString("00") + " onlink";
+                sysDisplayValue.Display1 = "m_" + g1.Key.SystemId.ToString();
+                sysDisplayValue.Display2 = "m_" + g1.Key.SystemId.ToString();
+                sysDisplayValue.Display3 = "m_" + g1.Key.SystemId.ToString() + " onlink";
+                sysDisplayValue.Display4 = g1.Key.SystemClass.ToString();
                 sysDisplayValue.Int01 = index++;
                 menu.Add(sysDisplayValue);
                 sysDisplayValue.ChildDisplayValues = new List<DisplayValue>();
 
-                var programTypeGroup = programList.Where(t => t.SystemId == g1.Key.SystemId).OrderBy(t => t.ProgarmOrder).ThenBy(t => t.ProgramId).GroupBy(t => new { t.ProgramType });
+                var programTypeGroup = programList.Where(t => t.SystemId == g1.Key.SystemId).OrderBy(t => t.ProgarmOrder).ThenBy(t => t.ProgramId);
 
                 foreach (var g2 in programTypeGroup)
                 {
-                    DisplayValue typeDisplayValue = new DisplayValue();
-                    typeDisplayValue.Value = g2.Key.ProgramType.ToString();
-                    typeDisplayValue.Display = g2.Key.ProgramType.ToString();
-                    sysDisplayValue.ChildDisplayValues.Add(typeDisplayValue);
-
-                    typeDisplayValue.ChildDisplayValues = new List<DisplayValue>();
-
-                    var programGroup = programList.Where(t => t.SystemId == g1.Key.SystemId && t.ProgramType == g2.Key.ProgramType).OrderBy(t => t.ProgarmOrder).ThenBy(t => t.ProgramId);
-
-                    foreach (var g3 in programGroup)
-                    {
-                        DisplayValue programDisplayValue = new DisplayValue();
-                        programDisplayValue.Value = g3.ProgramId.ToString();
-                        programDisplayValue.Display = g3.ProgramName;
-                        programDisplayValue.Display1 = g3.ProgramNo;
-                        programDisplayValue.Display2 = applicationPath + "\\" + g3.ProgramNo;
-                        typeDisplayValue.ChildDisplayValues.Add(programDisplayValue);
-                    }
+                    DisplayValue programDisplayValue = new DisplayValue();
+                    programDisplayValue.Value = g2.ProgramId.ToString();
+                    programDisplayValue.Display = g2.ProgramName;
+                    programDisplayValue.Display1 = g2.ProgramNo;
+                    programDisplayValue.Display2 = applicationPath + "\\" + g2.ProgramNo;
+                    sysDisplayValue.ChildDisplayValues.Add(programDisplayValue);
                 }
+
+                //var programTypeGroup = programList.Where(t => t.SystemId == g1.Key.SystemId).OrderBy(t => t.ProgarmOrder).ThenBy(t => t.ProgramId).GroupBy(t => new { t.ProgramType });
+
+                //foreach (var g2 in programTypeGroup)
+                //{
+                //    DisplayValue typeDisplayValue = new DisplayValue();
+                //    typeDisplayValue.Value = g2.Key.ProgramType.ToString();
+                //    typeDisplayValue.Display = g2.Key.ProgramType.ToString();
+                //    sysDisplayValue.ChildDisplayValues.Add(typeDisplayValue);
+
+                //    typeDisplayValue.ChildDisplayValues = new List<DisplayValue>();
+
+                //    var programGroup = programList.Where(t => t.SystemId == g1.Key.SystemId && t.ProgramType == g2.Key.ProgramType).OrderBy(t => t.ProgarmOrder).ThenBy(t => t.ProgramId);
+
+                //    foreach (var g3 in programGroup)
+                //    {
+                //        DisplayValue programDisplayValue = new DisplayValue();
+                //        programDisplayValue.Value = g3.ProgramId.ToString();
+                //        programDisplayValue.Display = g3.ProgramName;
+                //        programDisplayValue.Display1 = g3.ProgramNo;
+                //        programDisplayValue.Display2 = applicationPath + "\\" + g3.ProgramNo;
+                //        typeDisplayValue.ChildDisplayValues.Add(programDisplayValue);
+                //    }
+                //}
             }
             this.ViewBag.MenuModel = menu;
 
 
 
-            
+            var findProgram = this.IRF_DB.vw_System_Program.Where(t => t.PRGNO == this.ProgramNo);
+
+            if (findProgram.Count() > 0)
+            {
+                this.Title = findProgram.First().PROGRAMNO_NAME;// + "--" + SSoft.Web.Security.User.FriendPath;
+                if ((this.ViewBag.MenuModel as List<DisplayValue>).Where(t => t.Display == findProgram.First().PROGRAMNO_NAME).Count() > 0)
+                {
+                    this.MainMenuId = (this.ViewBag.MenuModel as List<DisplayValue>).Where(t => t.Display == findProgram.First().PROGRAMNO_NAME).First().Int01.ToString();
+                }
+                //this.MainMenuId = (findProgram.First().WUPage_TabId-1).ToString();
+                if (this.IRF_DB.vw_System_Program.Where(t => t.PRGNO == this.ProgramNo).Count() > 0)
+                {
+                    this.ProgramId = this.IRF_DB.vw_System_Program.Where(t => t.PRGNO == this.ProgramNo).First().PROGRAMNO_Id.ToString();
+                }
+            }
+
+
+
+
             //here the routedata is available
             string controller_name = ControllerContext.RouteData.Values["Controller"].ToString();
 
@@ -150,28 +177,22 @@ FROM              WebUserTab INNER JOIN
                 this.ProgramNo = controller_name;
             this.MainMenuId = "0";
             this.IsAllow = false;
-            if (this.ProgramList.Where(t => t.ProgramNo == this.ProgramNo).Count() > 0 || this.ProgramNo.ToUpper() == "HOME")
+            if (this.ProgramNo.ToUpper() == "HOME")
             {
                 this.IsAllow = true;
             }
-
-            
-            var findProgram = this.IRF_DB.WebUserPage.Where(t => t.WUPage_No == this.ProgramNo);
-
-            if (findProgram.Count() > 0)
+            else
             {
-                this.Title = findProgram.First().WUPage_Name;// + "--" + SSoft.Web.Security.User.FriendPath;
-                if ((this.ViewBag.MenuModel as List<DisplayValue>).Where(t => t.Display == findProgram.First().WebUserTab.WUTab_Name).Count() > 0)
+                if (this.ProgramList != null)
                 {
-                    this.MainMenuId = (this.ViewBag.MenuModel as List<DisplayValue>).Where(t => t.Display == findProgram.First().WebUserTab.WUTab_Name).First().Int01.ToString();
-                }
-                //this.MainMenuId = (findProgram.First().WUPage_TabId-1).ToString();
-                if (this.IRF_DB.WebUserPage.Where(t => t.WUPage_No == this.ProgramNo).Count() > 0)
-                {
-                    this.ProgramId = this.IRF_DB.WebUserPage.Where(t => t.WUPage_No == this.ProgramNo).First().WUPage_Id;
+                    if (this.ProgramList.Where(t => t.ProgramNo.ToUpper() == this.ProgramNo.ToUpper()).Count() > 0)
+                    {
+                        this.IsAllow = true;
+                    }
                 }
             }
-            
+
+
         }
         [System.Web.Http.HttpPost]
         public void UploadFile()
@@ -235,9 +256,9 @@ FROM              WebUserTab INNER JOIN
             </div>
     </tab>
 </tabset>";
-            this.ViewBag.Delare = "$scope.applicationPath='" + applicationPath  + "';" + "$scope.onlyNumbers = '/^[1-9][0-9]*$/';$scope.userModel={};$scope.conditionUser={};$scope.pageSize = 15;$scope.querySelectedRowIndex = -1;\n$scope.UserId='" + (System.Web.HttpContext.Current != null ? System.Web.HttpContext.Current.User.Identity.Name : "") + "';\n" +
+            this.ViewBag.Delare = "$scope.applicationPath='" + applicationPath + "';" + "$scope.onlyNumbers = '/^[1-9][0-9]*$/';$scope.userModel={};$scope.conditionUser={};$scope.pageSize = 15;$scope.querySelectedRowIndex = -1;\n$scope.UserId='" + (System.Web.HttpContext.Current != null ? System.Web.HttpContext.Current.User.Identity.Name : "") + "';\n" +
                 "$scope.delay = 0;$scope.minDuration = 0;$scope.message = '資料處理中...';$scope.backdrop = true;$scope.promise = null;$scope.templateUrl='';";
-            this.ViewBag.Delare += "$scope.userModel.Name='" + (SSoft.Web.Security.User.Emp_Name != null ? SSoft.Web.Security.User.Emp_Name : "") +"';\n";
+            this.ViewBag.Delare += "$scope.userModel.Name='" + (SSoft.Web.Security.User.Emp_Name != null ? SSoft.Web.Security.User.Emp_Name : "") + "';\n";
             //this.ViewBag.Delare += "$scope.userModel.ADName='" + (SSoft.Web.Security.User.AD_Name != null ? SSoft.Web.Security.User.AD_Name : "") + "';\n";
             //this.ViewBag.Delare += "$scope.userModel.EMail='" + (SSoft.Web.Security.User.EMail != null ? SSoft.Web.Security.User.EMail : "") + "';\n";
             //this.ViewBag.Delare += "$scope.userModel.Phone='" + (SSoft.Web.Security.User.Phone != null ? SSoft.Web.Security.User.Phone : "") + "';\n";
@@ -253,36 +274,36 @@ FROM              WebUserTab INNER JOIN
             this.ViewBag.Tab = @"$scope.tabMains=" + jsonStirngTab + ";";
 
 
-            this.ViewBag.MenuModel = @"$scope.MenuModel=" + YMIR.App_Code.Utils.GetJsonConvertSerializeString(this.ViewBag.MenuModel) + ";";
+//            this.ViewBag.MenuModel = @"$scope.MenuModel=" + YMIR.App_Code.Utils.GetJsonConvertSerializeString(this.ViewBag.MenuModel) + ";";
 
 
-            this.ViewBag.MenuModel += @"$scope.subMenuModel = [];
-        $scope.mainMenuClick = function(mainIndex,programNo)
-        {
-            //alert(mainIndex);
-            angular.forEach($scope.MenuModel, function (value, key) {
-                value.Display1 = value.Display2;
-            }); 
-            if($scope.MenuModel[mainIndex])
-            {
-                $scope.MenuModel[mainIndex].Display1 = $scope.MenuModel[mainIndex].Display3;
-                $scope.subMenuModel = $scope.MenuModel[mainIndex].ChildDisplayValues;
+//            this.ViewBag.MenuModel += @"$scope.subMenuModel = [];
+//        $scope.mainMenuClick = function(mainIndex,programNo)
+//        {
+//            //alert(mainIndex);
+//            angular.forEach($scope.MenuModel, function (value, key) {
+//                value.Display1 = value.Display2;
+//            }); 
+//            if($scope.MenuModel[mainIndex])
+//            {
+//                $scope.MenuModel[mainIndex].Display1 = $scope.MenuModel[mainIndex].Display3;
+//                $scope.subMenuModel = $scope.MenuModel[mainIndex].ChildDisplayValues;
             
-                angular.forEach($scope.subMenuModel, function(value, index) {
-                    var programCount = Enumerable.From(value.ChildDisplayValues).Where(function (item) {return item.Display1 == programNo }).ToArray();
-                    if (programCount.length > 0) {
-                        value.BooleanValue = true;
-                    }
-                });
-            }
-        };
-";
-            this.ViewBag.MenuModel += "$scope.mainMenuClick(" + this.MainMenuId + ",'" + this.ProgramNo + "');";
-            this.ViewBag.MenuModel += "$scope.QueryData=[]; $scope.modelTemp = {};";
+//                angular.forEach($scope.subMenuModel, function(value, index) {
+//                    var programCount = Enumerable.From(value.ChildDisplayValues).Where(function (item) {return item.Display1 == programNo }).ToArray();
+//                    if (programCount.length > 0) {
+//                        value.BooleanValue = true;
+//                    }
+//                });
+//            }
+//        };
+//";
+//            this.ViewBag.MenuModel += "$scope.mainMenuClick(" + this.MainMenuId + ",'" + this.ProgramNo + "');";
+//            this.ViewBag.MenuModel += "$scope.QueryData=[]; $scope.modelTemp = {};";
             //定義ModelInitial            
             string childTableString = "";
             if (this.ChildTables != null)
-            { 
+            {
                 foreach (string table in this.ChildTables)
                 {
                     childTableString += "$scope.model." + table + " = [];";
@@ -306,7 +327,7 @@ FROM              WebUserTab INNER JOIN
                     $scope.UAddAfter();         
                 }
              }};";
-            
+
             //刪除
             this.ViewBag.DeleteFunction = @"$scope.Delete = function () {
 
@@ -361,7 +382,7 @@ FROM              WebUserTab INNER JOIN
 
             }
         };";
-            
+
             //取得維護資料 Retrieve By Key
             this.ViewBag.RetrieveByKey = @"$scope.selectQueryRow = '<button class=""btn btn-sm""  ng-click=""Retrieve(row.entity,row.rowIndex)""><img width=""10"" height=""10"" title=""選擇"" src=""" + applicationPath + @"/Images/ToolBar/glyphicons-120-table.png""></button>';
         $scope.Retrieve = function (row,rowIndex) {
@@ -433,7 +454,7 @@ FROM              WebUserTab INNER JOIN
                     index++;
                 }
             }
-            
+
             this.ViewBag.FreeformFFunctions = @"$scope.freeformedit = '<button class=""btn btn-sm""  ng-click=""OpenFreeform(row);""   data-title=""維護""   bs-tooltip data-trigger=""hover""><img width=""10"" height=""10"" title=""Free Form 維護"" src=""" + applicationPath + @"/Images/ToolBar/glyphicons-236-pen.png""></button>';
         $scope.OpenFreeform = function (row) {
             //alert(row.entity.ID);
@@ -470,7 +491,7 @@ FROM              WebUserTab INNER JOIN
 
 
 " + string.Join(" else ", detailAddFunctions.ToArray()) + @"};";
-            
+
             //查詢
             this.ViewBag.QueryFunction = @"         
 
@@ -799,7 +820,7 @@ $scope.Open_Select_Dept_DialogId;
         ";
 
             return this.ViewBag.Delare + this.ViewBag.DDDW + this.ViewBag.Tab + this.ViewBag.MenuModel + this.ViewBag.ModelInitial + this.ViewBag.AddFunction + this.ViewBag.DeleteFunction + this.ViewBag.RetrieveByKey + this.ViewBag.DeleteDetailFunctions + this.ViewBag.FreeformFFunctions +
-                this.ViewBag.DetailAddFunctions + this.ViewBag.QueryFunction + this.ViewBag.SaveFunction  + this.ViewBag.FileUploadFunction + this.ViewBag.SelectUserDeptFriend;
+                this.ViewBag.DetailAddFunctions + this.ViewBag.QueryFunction + this.ViewBag.SaveFunction + this.ViewBag.FileUploadFunction + this.ViewBag.SelectUserDeptFriend;
         }
     }
 }

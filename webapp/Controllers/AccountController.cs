@@ -39,7 +39,7 @@ namespace YMIR.Controllers
         {
             // We do not want to use any existing identity information
             EnsureLoggedOut();
-            //a
+
             // Store the originating URL so we can attach it to a form field
             var viewModel = new AccountLoginModel { ReturnUrl = returnUrl };
 

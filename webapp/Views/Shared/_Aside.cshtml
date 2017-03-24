@@ -16,9 +16,26 @@
         Please note that these links work a bit different than
         traditional href="" links. See documentation for details.
         -->
-
         <ul>
-            <li class="@Html.RouteIf("index", "active")">
+            @if (ViewBag.MenuModel != null)
+            {
+                foreach (var system in (ViewBag.MenuModel as List<SSoft.MVC.DisplayValue>).GroupBy(t => t.Value).Select(t => t.First()).ToList())
+                {
+                    <li class="@Html.RouteIf("index", "active")">
+                        <a href="#" title="基本資料">@Html.Raw("<i class='" + system.Display4 + "'></i>")> <span class="menu-item-parent">@system.Display</span></a>
+                        <ul>
+                         
+                            @foreach (var programs in system.ChildDisplayValues)
+                            {
+                                <li class="@Html.RouteIf("index", "active")">
+                                    <a href="@Url.Action("index", programs.Display1.ToUpper())" title=@programs.Display><span class="menu-item-parent">@programs.Display</span></a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+            @*<li class="@Html.RouteIf("index", "active")">
                 <a href="#" title="基本資料"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">基本資料</span></a>
                 <ul>
                     <li class="@Html.RouteIf("index", "active")">
@@ -68,8 +85,8 @@
                         <a href="@Url.Action("highcharts", "graphs")">HighchartTable <span class="badge pull-right inbox-badge bg-color-yellow">new</span></a>
                     </li>
                 </ul>
-            </li>
-       
+            </li>*@
+
         </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu">

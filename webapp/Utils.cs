@@ -19,11 +19,11 @@ namespace YMIR.App_Code
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="programId">操作紀錄型態(0:登入 1:團購 2:活動 ..etc)</param>
+        /// <param name="programId">作業編號</param>
         /// <param name="actionType">操作類型(0:登入 1:建立 2:修改 3:刪除 4:查詢)</param>
         /// <param name="comment"></param>
         /// <param name="key">ID編號(團購ID、活動ID、訊息ID等，若無ID則填入0，如登入)</param>
-        public static void InsertActionLog(int programId,int actionType,string comment,string key)
+        public static void InsertActionLog(string programId,int actionType,string comment,string key)
         {
             string sql = @"INSERT INTO ActionLog
                                            ([ActionLog_Action],[ActionLog_Id],[ActionLog_UserNO],
@@ -41,7 +41,7 @@ namespace YMIR.App_Code
             _p.Add(new SqlParameter("@ActionLog_Type", (object)actionType));
             _p.Add(new SqlParameter("@ActionLog_Comment", string.IsNullOrWhiteSpace(comment) ? "" : comment.Trim()));
             _p.Add(new SqlParameter("@ActionLog_CreateTime", DateTime.Now));
-            SSoft.Data.SqlHelper.SelectNonQuery(sql, _p.ToArray());
+            //SSoft.Data.SqlHelper.SelectNonQuery(sql, _p.ToArray());
         }
 
         public static dynamic GetJsonConvertDeserializeObject(dynamic data)
